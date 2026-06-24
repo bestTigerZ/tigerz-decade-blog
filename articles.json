@@ -1,0 +1,53 @@
+{
+  "categories": ["日常", "编程", "游戏"],
+  "articles": [
+    {
+      "id": 1,
+      "title": "收破烂的3，金工记录！",
+      "category": "游戏",
+      "date": "2026-06-21",
+      "readTime": "1分钟",
+      "cover": "blogs/游戏/1.最近沉迷的几款独立游戏推荐/1.jpg",
+      "coverBg": null,
+      "coverIcon": null,
+      "summary": "虽然不是特别高，但是也挺满意了，没有打很久就过了135的线。",
+      "path": "blogs/游戏/1.最近沉迷的几款独立游戏推荐/article.md"
+    },
+    {
+      "id": 2,
+      "title": "我的宝可梦队伍分享！",
+      "category": "游戏",
+      "date": "2026-06-19",
+      "readTime": "10分钟",
+      "cover": "assets/images/combo.png",
+      "coverBg": null,
+      "coverIcon": null,
+      "summary": "来分享一下我最喜欢的宝可梦队伍配置~每一只都是我的心头好！对战和通关都超好用的！",
+      "path": "blogs/游戏/2.我的宝可梦队伍分享/article.md"
+    },
+    {
+      "id": 3,
+      "title": "Java开发踩坑记录 | 那些年遇到的bug",
+      "category": "编程",
+      "date": "2026-06-17",
+      "readTime": "12分钟",
+      "cover": null,
+      "coverBg": "from-cyan-600 to-blue-800",
+      "coverIcon": "💻",
+      "summary": "作为一名Java开发工程师，工作中遇到了好多有意思的bug~来记录一下踩过的坑，希望能帮到大家！",
+      "path": "blogs/编程/1.Java开发踩坑记录/article.md"
+    },
+    {
+      "id": 4,
+      "title": "感谢每一个关注我的小伙伴",
+      "category": "日常",
+      "date": "2026-06-22",
+      "readTime": "3分钟",
+      "cover": null,
+      "coverBg": "from-pink-500 to-purple-600",
+      "coverIcon": "💌",
+      "summary": "粉丝破1啦！真的很感谢大家的喜欢和支持~能认识这么多好朋友真的太开心了！爱你们！",
+      "path": "blogs/日常/1.感谢每一个关注我的小伙伴/article.md"
+    }
+  ]
+}

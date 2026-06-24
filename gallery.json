@@ -1,0 +1,129 @@
+{
+  "total": 16,
+  "artworks": [
+    {
+      "id": 1,
+      "title": "十年头像",
+      "description": "约稿 · 2026",
+      "image": "gallery/avatar.jpg",
+      "type": "image"
+    },
+    {
+      "id": 2,
+      "title": "TigerZ家族",
+      "description": "人设页 · 2026",
+      "image": "gallery/combo.png",
+      "type": "image"
+    },
+    {
+      "id": 3,
+      "title": "动态速写",
+      "description": "约稿 · 2026",
+      "image": "gallery/sketch.jpg",
+      "type": "image"
+    },
+    {
+      "id": 4,
+      "title": "Q版十年",
+      "description": "约稿 · 2026",
+      "image": "gallery/chibi.jpg",
+      "type": "image"
+    },
+    {
+      "id": 5,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "✨",
+      "gradient": "from-cyan-500 to-blue-700",
+      "type": "placeholder"
+    },
+    {
+      "id": 6,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "💙",
+      "gradient": "from-teal-500 to-cyan-700",
+      "type": "placeholder"
+    },
+    {
+      "id": 7,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "🎮",
+      "gradient": "from-blue-500 to-indigo-700",
+      "type": "placeholder"
+    },
+    {
+      "id": 8,
+      "title": "更多收藏",
+      "description": "查看全部",
+      "icon": "🐯",
+      "gradient": "from-purple-500 to-blue-700",
+      "type": "placeholder"
+    },
+    {
+      "id": 9,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "⚡",
+      "gradient": "from-yellow-500 to-orange-600",
+      "type": "placeholder"
+    },
+    {
+      "id": 10,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "🎵",
+      "gradient": "from-green-500 to-teal-600",
+      "type": "placeholder"
+    },
+    {
+      "id": 11,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "☕",
+      "gradient": "from-orange-500 to-amber-700",
+      "type": "placeholder"
+    },
+    {
+      "id": 12,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "📷",
+      "gradient": "from-pink-500 to-rose-600",
+      "type": "placeholder"
+    },
+    {
+      "id": 13,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "🏀",
+      "gradient": "from-red-500 to-orange-600",
+      "type": "placeholder"
+    },
+    {
+      "id": 14,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "👟",
+      "gradient": "from-indigo-500 to-purple-700",
+      "type": "placeholder"
+    },
+    {
+      "id": 15,
+      "title": "新约稿期待中",
+      "description": "敬请期待",
+      "icon": "🐾",
+      "gradient": "from-cyan-400 to-blue-600",
+      "type": "placeholder"
+    },
+    {
+      "id": 16,
+      "title": "更多精彩",
+      "description": "持续更新中",
+      "icon": "💎",
+      "gradient": "from-violet-500 to-purple-700",
+      "type": "placeholder"
+    }
+  ]
+}
