@@ -60,10 +60,12 @@ mobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.remove('hidden');
         mobileMenuBtn.textContent = '✕';
         document.body.style.overflow = 'hidden';
+        startMobileMenuHearts();
     } else {
         mobileMenu.classList.add('hidden');
         mobileMenuBtn.textContent = '☰';
         document.body.style.overflow = '';
+        stopMobileMenuHearts();
     }
 });
 
@@ -71,6 +73,40 @@ function closeMobileMenu() {
     mobileMenu.classList.add('hidden');
     mobileMenuBtn.textContent = '☰';
     document.body.style.overflow = '';
+    stopMobileMenuHearts();
+}
+
+// 移动端菜单蓝色爱心粒子特效
+let mobileMenuHeartInterval = null;
+
+function startMobileMenuHearts() {
+    const container = document.getElementById('mobileMenuHearts');
+    if (!container) return;
+    
+    mobileMenuHeartInterval = setInterval(() => {
+        const heart = document.createElement('div');
+        const hearts = ['💙', '🩵', '💎', '✨', '🐾', '💠', '🌀'];
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.cssText = `
+            position: absolute;
+            left: ${Math.random() * 90 + 5}%;
+            top: -30px;
+            font-size: ${Math.random() * 20 + 14}px;
+            opacity: 0.8;
+            animation: mobileHeartFall ${Math.random() * 3 + 4}s linear forwards;
+            pointer-events: none;
+        `;
+        container.appendChild(heart);
+        
+        setTimeout(() => heart.remove(), 7000);
+    }, 600);
+}
+
+function stopMobileMenuHearts() {
+    if (mobileMenuHeartInterval) {
+        clearInterval(mobileMenuHeartInterval);
+        mobileMenuHeartInterval = null;
+    }
 }
 
 // 添加随机星星效果
