@@ -554,7 +554,8 @@
     nav {
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
-        background: rgba(10, 22, 40, 0.9) !important;
+        background: rgba(0, 180, 216, 0.12) !important;
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3) !important;
     }
     
     /* 文章模态框关闭按钮移动端位置 */

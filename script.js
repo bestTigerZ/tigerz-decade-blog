@@ -34,14 +34,20 @@ backToTop.addEventListener('click', () => {
     });
 });
 
-// 导航栏滚动效果
+// 导航栏滚动效果 — 始终保持玻璃背景
 const nav = document.querySelector('nav');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
-        nav.style.background = 'rgba(10, 22, 40, 0.95)';
+        nav.style.background = 'rgba(0, 180, 216, 0.12)';
+        nav.style.backdropFilter = 'blur(16px)';
+        nav.style.WebkitBackdropFilter = 'blur(16px)';
+        nav.style.borderBottom = '1px solid rgba(0, 212, 255, 0.3)';
     } else {
         nav.style.background = 'rgba(0, 180, 216, 0.08)';
+        nav.style.backdropFilter = 'blur(16px)';
+        nav.style.WebkitBackdropFilter = 'blur(16px)';
+        nav.style.borderBottom = '1px solid rgba(0, 212, 255, 0.2)';
     }
 });
 
