@@ -45,10 +45,21 @@
                     <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                     在线摸鱼
                 </span>
-                <button class="md:hidden text-xl text-cyan-400">☰</button>
+                <button id="mobileMenuBtn" class="md:hidden text-xl text-cyan-400 hover:text-cyan-300 transition cursor-pointer z-50 relative">☰</button>
             </div>
         </div>
     </nav>
+
+    <!-- 移动端菜单 -->
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-[#0a1628]/95 backdrop-blur-xl hidden md:hidden">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#home" onclick="closeMobileMenu()" class="text-2xl font-bold text-white hover:text-cyan-400 transition">首页</a>
+            <a href="#about" onclick="closeMobileMenu()" class="text-2xl font-bold text-white hover:text-cyan-400 transition">关于我</a>
+            <a href="#blog" onclick="closeMobileMenu()" class="text-2xl font-bold text-white hover:text-cyan-400 transition">博客</a>
+            <a href="#gallery" onclick="closeMobileMenu()" class="text-2xl font-bold text-white hover:text-cyan-400 transition">约稿</a>
+            <a href="#contact" onclick="closeMobileMenu()" class="text-2xl font-bold text-white hover:text-cyan-400 transition">联系</a>
+        </div>
+    </div>
 
     <!-- 英雄区 -->
     <section id="home" class="min-h-screen flex items-center justify-center relative pt-20">

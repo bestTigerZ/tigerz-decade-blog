@@ -36,6 +36,8 @@ backToTop.addEventListener('click', () => {
 
 // 导航栏滚动效果 — 始终保持玻璃背景
 const nav = document.querySelector('nav');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
@@ -50,6 +52,26 @@ window.addEventListener('scroll', () => {
         nav.style.borderBottom = '1px solid rgba(0, 212, 255, 0.2)';
     }
 });
+
+// 移动端菜单切换
+mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('hidden');
+    if (isOpen) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenuBtn.textContent = '✕';
+        document.body.style.overflow = 'hidden';
+    } else {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.textContent = '☰';
+        document.body.style.overflow = '';
+    }
+});
+
+function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    mobileMenuBtn.textContent = '☰';
+    document.body.style.overflow = '';
+}
 
 // 添加随机星星效果
 function createSparkle() {
