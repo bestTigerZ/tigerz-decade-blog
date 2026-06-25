@@ -526,7 +526,7 @@
 @media (max-width: 768px) {
     /* 英雄区增加顶部间距，避免被导航挡住 */
     #home {
-        padding-top: 100px !important;
+        padding-top: 130px !important;
         min-height: auto !important;
         padding-bottom: 60px;
     }
