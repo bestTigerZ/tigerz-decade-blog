@@ -134,13 +134,15 @@
     will-change: transform;
 }
 
-/* 滚动提示 — 独立的 flex 居中容器 */
+/* 滚动提示 — hero 底部水平居中 */
 .scroll-hint {
     display: flex;
     justify-content: center;
-    padding: 20px 0 30px;
+    margin-top: auto;
+    padding-top: 40px;
     z-index: 20;
     pointer-events: none;
+    position: relative;
 }
 
 .scroll-hint-inner {
