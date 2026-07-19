@@ -134,12 +134,20 @@
     will-change: transform;
 }
 
-/* 英雄区底部滚动提示 — 正常文档流中居中 */
+/* 英雄区底部滚动提示 — 绝对定位水平居中 */
 .scroll-hint {
-    margin-top: 32px;
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.scroll-hint-inner {
     animation: bounce 3s ease-in-out infinite;
     will-change: transform;
 }
