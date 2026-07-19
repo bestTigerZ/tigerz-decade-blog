@@ -34,22 +34,23 @@ backToTop.addEventListener('click', () => {
     });
 });
 
-// 导航栏滚动效果 — 始终保持玻璃背景
+// 导航栏滚动效果 — 用 class 切换代替 style 操作，加 requestAnimationFrame 节流
 const nav = document.querySelector('nav');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 
+let navTicking = false;
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        nav.style.background = 'rgba(0, 180, 216, 0.12)';
-        nav.style.backdropFilter = 'blur(16px)';
-        nav.style.WebkitBackdropFilter = 'blur(16px)';
-        nav.style.borderBottom = '1px solid rgba(0, 212, 255, 0.3)';
-    } else {
-        nav.style.background = 'rgba(0, 180, 216, 0.08)';
-        nav.style.backdropFilter = 'blur(16px)';
-        nav.style.WebkitBackdropFilter = 'blur(16px)';
-        nav.style.borderBottom = '1px solid rgba(0, 212, 255, 0.2)';
+    if (!navTicking) {
+        requestAnimationFrame(() => {
+            if (window.scrollY > 100) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+            navTicking = false;
+        });
+        navTicking = true;
     }
 });
 
@@ -83,47 +84,74 @@ function startMobileMenuHearts() {
     const container = document.getElementById('mobileMenuHearts');
     if (!container) return;
     
-    mobileMenuHeartInterval = setInterval(() => {
-        const heart = document.createElement('div');
-        const hearts = ['💙', '🩵', '💎', '✨', '🐾', '💠', '🌀'];
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.cssText = `
-            position: absolute;
-            left: ${Math.random() * 90 + 5}%;
-            top: -30px;
-            font-size: ${Math.random() * 20 + 14}px;
-            opacity: 0.8;
-            animation: mobileHeartFall ${Math.random() * 3 + 4}s linear forwards;
-            pointer-events: none;
-        `;
-        container.appendChild(heart);
+    // 使用 requestAnimationFrame 批量创建，减少 layout thrashing
+    let lastSpawn = 0;
+    const spawnInterval = 800;
+    
+    function spawnHeart(timestamp) {
+        if (!mobileMenuHeartInterval) return; // 菜单已关闭
         
-        setTimeout(() => heart.remove(), 7000);
-    }, 600);
+        if (timestamp - lastSpawn >= spawnInterval) {
+            const heart = document.createElement('div');
+            const hearts = ['💙', '🩵', '💎', '✨', '🐾', '💠', '🌀'];
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.cssText = `
+                position: absolute;
+                left: ${Math.random() * 90 + 5}%;
+                top: -30px;
+                font-size: ${Math.random() * 16 + 12}px;
+                opacity: 0.8;
+                animation: mobileHeartFall ${Math.random() * 2.5 + 3.5}s linear forwards;
+                pointer-events: none;
+                will-change: transform;
+            `;
+            container.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) heart.remove();
+            }, 6500);
+            
+            lastSpawn = timestamp;
+        }
+        
+        mobileMenuHeartInterval = requestAnimationFrame(spawnHeart);
+    }
+    
+    mobileMenuHeartInterval = requestAnimationFrame(spawnHeart);
 }
 
 function stopMobileMenuHearts() {
     if (mobileMenuHeartInterval) {
-        clearInterval(mobileMenuHeartInterval);
+        cancelAnimationFrame(mobileMenuHeartInterval);
         mobileMenuHeartInterval = null;
     }
+    // 清空已生成的粒子
+    const container = document.getElementById('mobileMenuHearts');
+    if (container) container.innerHTML = '';
 }
 
-// 添加随机星星效果
+// 添加随机星星效果 — 降低频率，限制同时存在的星星数量
+const MAX_SPARKLES = 6;
+let activeSparkles = 0;
+
 function createSparkle() {
+    if (activeSparkles >= MAX_SPARKLES) return;
+    
     const sparkle = document.createElement('div');
     sparkle.className = 'sparkle';
     sparkle.style.left = Math.random() * 100 + 'vw';
     sparkle.style.top = Math.random() * 100 + 'vh';
-    sparkle.style.animationDelay = Math.random() * 2.5 + 's';
+    sparkle.style.animationDelay = Math.random() * 3 + 's';
     document.body.appendChild(sparkle);
+    activeSparkles++;
     
     setTimeout(() => {
         sparkle.remove();
-    }, 5000);
+        activeSparkles--;
+    }, 6000);
 }
 
-setInterval(createSparkle, 800);
+setInterval(createSparkle, 1500);
 
 // 留言类型按钮切换
 const typeButtons = document.querySelectorAll('form button[type="button"]');
