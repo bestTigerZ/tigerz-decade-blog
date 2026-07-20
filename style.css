@@ -1,14 +1,55 @@
+/* ========== 离线字体：ZCOOL KuaiLe（标题装饰字体） ========== */
+@font-face {
+    font-family: 'ZCOOL KuaiLe';
+    src: url('assets/fonts/zcool-kuaile-chinese-simplified-400-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ========== 设计 token ========== */
+:root {
+    --space-section-y: 7rem;          /* section 上下内边距（桌面） */
+    --space-block: 4rem;              /* 标题块到内容的间距（桌面） */
+    --container-pad-x: 1.5rem;        /* 容器左右内边距（移动） */
+    --radius-card: 1.5rem;
+    --radius-pill: 9999px;
+    --tap-size: 44px;                 /* 移动端最小触控目标 */
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB",
+                 "Source Han Sans CN", "Noto Sans CJK SC", sans-serif;
+}
+
 * {
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: var(--font-sans);
+}
+
+/* 全局排版优化：字体渲染、中文行高、数字等宽 */
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    line-height: 1.75;                /* 中文正文更舒展 */
+    font-variant-numeric: tabular-nums;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .title-font {
-    font-family: 'ZCOOL KuaiLe', cursive;
+    font-family: 'ZCOOL KuaiLe', var(--font-sans);
 }
 
 .street-font {
     font-weight: 900;
     letter-spacing: -0.02em;
+}
+
+/* QQ 号、百分比、日期等数字使用等宽数字，避免跳动 */
+.font-mono, .tabular {
+    font-variant-numeric: tabular-nums;
 }
 
 /* 全局动画性能优化 */
@@ -322,6 +363,13 @@ nav.nav-scrolled {
     font-weight: 500;
 }
 
+/* 分类按钮 / 加载更多按钮触控目标 */
+.category-btn,
+#blogLoadMore button,
+#galleryLoadMore button {
+    min-height: 40px;
+}
+
 /* 打字机光标 */
 .typing-cursor::after {
     content: '|';
@@ -552,7 +600,10 @@ nav.nav-scrolled {
 .article-modal-content-text {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.8;
-    font-size: 15px;
+    font-size: 16px;
+    /* 防止内部超宽元素（代码块/图片/表格）撑破容器造成横向滚动 */
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .article-modal-content-text p {
@@ -566,13 +617,66 @@ nav.nav-scrolled {
     color: #00d4ff;
 }
 
-.article-modal-content-text ul {
+.article-modal-content-text ul,
+.article-modal-content-text ol {
     margin-bottom: 16px;
     padding-left: 20px;
 }
 
 .article-modal-content-text li {
     margin-bottom: 8px;
+}
+
+/* 图片永远不超出正文区 */
+.article-modal-content-text img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 12px 0;
+}
+
+/* 代码块横向滚动，不撑破布局 */
+.article-modal-content-text pre {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.article-modal-content-text code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+}
+
+.article-modal-content-text p code,
+.article-modal-content-text li code {
+    background: rgba(0, 212, 255, 0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #7dd3fc;
+}
+
+/* 表格防溢出：超宽时内部滚动 */
+.article-modal-content-text table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 14px 0;
+    border-collapse: collapse;
+}
+
+/* 引用块美化 */
+.article-modal-content-text blockquote {
+    border-left: 3px solid rgba(0, 212, 255, 0.5);
+    padding: 4px 16px;
+    margin: 14px 0;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 212, 255, 0.04);
+    border-radius: 0 8px 8px 0;
 }
 
 .article-modal-footer {
@@ -589,42 +693,66 @@ nav.nav-scrolled {
     font-size: 13px;
 }
 
-/* 移动端适配 */
+/* ========== 移动端适配（≤768px） ==========
+   设计原则：
+   1. 用精确类名/容器作用域，避免 #home h1/p/a 这类全局选择器误伤卡片
+   2. 触控目标统一 ≥44px
+   3. section 内边距、标题间距压缩，减少滚动疲劳
+*/
 @media (max-width: 768px) {
-    /* 英雄区增加顶部间距，避免被导航挡住 */
+    :root {
+        --space-section-y: 4.5rem;     /* section 上下内边距收紧 */
+        --space-block: 2.5rem;         /* 标题块到内容收紧 */
+        --container-pad-x: 1.25rem;
+    }
+
+    /* 所有 section 统一收紧上下留白 */
+    section[id] {
+        padding-top: var(--space-section-y);
+        padding-bottom: var(--space-section-y);
+    }
+
+    /* section 标题块到内容的间距 */
+    section[id] > .max-w-7xl > .text-center,
+    section[id] > .max-w-5xl > .text-center {
+        margin-bottom: var(--space-block);
+    }
+
+    /* 英雄区：避开固定导航，去掉强制 min-height，让内容自然撑开 */
     #home {
-        padding-top: 130px !important;
-        min-height: auto !important;
+        padding-top: 120px;
         padding-bottom: 60px;
+        min-height: auto;
     }
-    
-    /* 头像尺寸调整 */
+
+    /* 头像尺寸（在 180px 基础上由 ≤480 / ≤360 继续递减） */
     .avatar-glow {
-        width: 180px !important;
-        height: 180px !important;
+        width: 180px;
+        height: 180px;
     }
-    
-    /* 玻璃态效果增强 - 移动端兼容性（去掉 backdrop-filter 防止卡顿） */
+
+    /* 玻璃态：移动端去掉 backdrop-filter 防卡顿，背景透明度提高保证可读性 */
     .glass-card {
         background: rgba(0, 180, 216, 0.15);
     }
-    
+
     .glass-card-strong {
         background: rgba(0, 180, 216, 0.2);
     }
-    
-    /* 导航栏玻璃态增强 */
+
+    /* 导航栏：移动端始终不透明，保证内容可读 */
     nav {
-        background: rgba(10, 22, 40, 0.92) !important;
-        border-bottom: 1px solid rgba(0, 212, 255, 0.3) !important;
+        background: rgba(10, 22, 40, 0.92);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.3);
     }
-    
-    /* 移动端菜单链接样式 */
+
+    /* 移动端菜单链接：宽度自适应、触控高度达标 */
     .mobile-menu-link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 200px;
+        width: min(80vw, 280px);
+        min-height: 52px;
         padding: 14px 24px;
         border-radius: 16px;
         background: rgba(0, 180, 216, 0.08);
@@ -634,7 +762,7 @@ nav.nav-scrolled {
         overflow: hidden;
         transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
     }
-    
+
     .mobile-menu-link:hover,
     .mobile-menu-link:active {
         background: rgba(0, 180, 216, 0.2);
@@ -643,7 +771,7 @@ nav.nav-scrolled {
         transform: scale(1.03);
         box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
     }
-    
+
     .mobile-menu-link::before {
         content: '';
         position: absolute;
@@ -654,89 +782,159 @@ nav.nav-scrolled {
         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
         transition: left 0.4s ease;
     }
-    
+
     .mobile-menu-link:hover::before {
         left: 100%;
     }
-    
-    /* 文章模态框关闭按钮移动端位置 */
-    .article-modal-close {
-        top: 20px;
-        right: 20px;
-        width: 44px;
-        height: 44px;
-    }
-    
-    /* Lightbox 按钮移动端调整 */
-    .lightbox-close {
-        top: 15px;
-        right: 15px;
-        width: 44px;
-        height: 44px;
-    }
-    
+
+    /* 文章模态框 / Lightbox 按钮移动端调整，触控 ≥44px */
+    .article-modal-close,
+    .lightbox-close,
     .lightbox-nav {
         width: 44px;
         height: 44px;
     }
-    
-    .lightbox-prev {
-        left: 10px;
+
+    .article-modal-close {
+        top: 16px;
+        right: 16px;
     }
-    
-    .lightbox-next {
-        right: 10px;
+
+    .lightbox-close {
+        top: 14px;
+        right: 14px;
     }
-    
-    /* 英雄区布局调整 */
-    #home .grid {
-        gap: 20px;
+
+    .lightbox-prev { left: 10px; }
+    .lightbox-next { right: 10px; }
+
+    /* 文章 modal 正文与标题移动端收紧 */
+    .article-modal-body {
+        padding: 22px 20px 28px;
     }
-    
-    /* 数据统计间距调整 */
+
+    .article-modal-title {
+        font-size: 22px;
+    }
+
+    .article-modal-header {
+        height: 180px;
+    }
+
+    /* 英雄区主网格间距 */
+    #home > .max-w-7xl {
+        gap: 24px;
+    }
+
+    /* 数据统计三栏卡片收紧 */
     #home .grid.grid-cols-3 {
         gap: 8px;
     }
 }
 
+/* ========== 小屏手机（≤480px） ========== */
 @media (max-width: 480px) {
-    /* 小屏幕头像再小一点 */
+    :root {
+        --space-section-y: 3.5rem;
+        --space-block: 2rem;
+    }
+
     .avatar-glow {
-        width: 160px !important;
-        height: 160px !important;
+        width: 160px;
+        height: 160px;
     }
-    
-    /* 英雄区标题文字缩小 */
-    #home h1 {
-        font-size: 2.5rem !important;
+
+    /* 精确作用于 hero 标题（需在 HTML 给 h1/h2 加 .hero-title 类），
+       不再用 #home h1/p/a 全局选择器误伤卡片 */
+    .hero-title--h1 {
+        font-size: 2.5rem;
     }
-    
-    #home h2 {
-        font-size: 1.5rem !important;
+
+    .hero-title--h2 {
+        font-size: 1.5rem;
     }
-    
-    /* 英雄区介绍文字缩小 */
-    #home p {
+
+    /* hero 介绍段落（同样用精确类） */
+    .hero-intro {
         font-size: 0.9rem;
     }
-    
-    /* 按钮尺寸调整 */
-    #home a {
-        padding: 10px 20px !important;
+
+    /* hero 内的两个 CTA 按钮全宽堆叠，触控更友好 */
+    .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .hero-cta > a {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+
+    /* hero 底部角色标签防溢出 */
+    .hero-badge {
+        max-width: 90vw;
+    }
+
+    .article-modal-header {
+        height: 150px;
+    }
+
+    .article-modal-title {
+        font-size: 20px;
+    }
+}
+
+/* ========== 超窄屏（≤360px，iPhone SE / 折叠屏外屏） ========== */
+@media (max-width: 360px) {
+    :root {
+        --container-pad-x: 1rem;
+    }
+
+    /* hero 标题进一步压缩，避免换行后溢出 */
+    .hero-title--h1 {
+        font-size: 2.25rem;
+    }
+
+    .hero-title--h2 {
+        font-size: 1.3rem;
+    }
+
+    .hero-intro {
         font-size: 0.85rem;
     }
-    
-    /* 文章模态框padding减小 */
-    .article-modal-body {
-        padding: 20px 24px 30px !important;
+
+    /* 数据统计卡片字号与内边距压缩 */
+    #home .grid.grid-cols-3 > div {
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
-    
-    .article-modal-title {
-        font-size: 20px !important;
+
+    #home .grid.grid-cols-3 > div > div:first-child {
+        font-size: 1.25rem;
     }
-    
-    .article-modal-header {
-        height: 160px !important;
+
+    /* hero 顶部小标签允许换行，防止贴边 */
+    .hero-pill {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px 8px;
+    }
+
+    /* footer 在超窄屏下，社交图标保证触控尺寸并允许换行 */
+    .footer-social {
+        flex-wrap: wrap;
+    }
+
+    .footer-social > span {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* 移动菜单 logo 与标题小幅压缩 */
+    #mobileMenu .title-font {
+        font-size: 1.25rem;
     }
 }
 

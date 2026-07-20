@@ -361,27 +361,26 @@ function renderArticles() {
         }
         
         html += `
-            <article class="glass-card rounded-2xl overflow-hidden card-hover group cursor-pointer" onclick="openArticle(${article.id})">
+            <article class="glass-card rounded-2xl overflow-hidden card-hover group cursor-pointer flex flex-col h-full" onclick="openArticle(${article.id})">
                 <div class="h-48 relative overflow-hidden">
                     ${coverHtml}
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a1628] to-transparent"></div>
                     <div class="absolute top-4 left-4 px-3 py-1 ${config.color} backdrop-blur rounded-full text-xs font-medium">
                         ${config.icon} ${article.category}
                     </div>
                 </div>
-                <div class="p-6">
+                <div class="p-6 flex flex-col flex-1">
                     <div class="flex items-center gap-3 text-gray-500 text-xs mb-3">
                         <span>📅 ${article.date}</span>
                         <span>·</span>
                         <span>⏱️ ${article.readTime}</span>
                     </div>
-                    <h3 class="text-lg font-bold mb-3 group-hover:text-cyan-400 transition leading-snug">
+                    <h3 class="text-lg font-bold mb-3 group-hover:text-cyan-400 transition leading-snug line-clamp-2 min-h-[3.4em]">
                         ${article.title}
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2">
                         ${article.summary}
                     </p>
-                    <div class="flex items-center justify-end">
+                    <div class="flex items-center justify-end mt-auto">
                         <span class="text-cyan-400 text-sm hover:text-cyan-300 transition font-medium">
                             阅读 →
                         </span>
@@ -417,7 +416,7 @@ function updateLoadMoreButton() {
 // 全局变量
 let allGallery = [];            // 所有约稿
 let currentGalleryPage = 0;     // 当前页码
-const galleryPageSize = 8;      // 每页显示数量
+const galleryPageSize = 4;      // 每页显示数量
 let galleryImageList = [];      // 可放大的图片列表（用于Lightbox）
 
 // 初始化约稿展示
@@ -512,6 +511,8 @@ function renderGallery() {
 
 // 加载更多约稿
 function loadMoreGallery() {
+    const totalShown = (currentGalleryPage + 1) * galleryPageSize;
+    if (totalShown >= allGallery.length) return;   // 没有更多则不执行
     currentGalleryPage++;
     renderGallery();
     updateGalleryLoadMoreButton();
@@ -521,11 +522,23 @@ function loadMoreGallery() {
 function updateGalleryLoadMoreButton() {
     const btnContainer = document.getElementById('galleryLoadMore');
     const totalShown = (currentGalleryPage + 1) * galleryPageSize;
-    
+
     if (totalShown >= allGallery.length) {
-        btnContainer.style.display = 'none';
-    } else {
+        // 没有更多了：显示"暂无更多..."提示
         btnContainer.style.display = 'block';
+        btnContainer.innerHTML = `
+            <div class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-gray-500 text-sm">
+                <span>🖼️</span> 暂无更多...
+            </div>
+        `;
+    } else {
+        // 还有更多：显示加载更多按钮
+        btnContainer.style.display = 'block';
+        btnContainer.innerHTML = `
+            <button onclick="loadMoreGallery()" class="street-btn px-8 py-3.5 cyber-gradient rounded-full font-bold text-white hover:opacity-90 transition glow-cyan inline-flex items-center gap-2">
+                <span>🖼️</span> 查看更多约稿
+            </button>
+        `;
     }
 }
 

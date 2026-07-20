@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🐯 TigerZ · 十年 | 个人博客</title>
     <script src="assets/js/tailwind.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#0a1628] text-white overflow-x-hidden">
@@ -45,7 +44,7 @@
                     <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                     在线摸鱼
                 </span>
-                <button id="mobileMenuBtn" class="md:hidden text-xl text-cyan-400 hover:text-cyan-300 transition cursor-pointer z-50 relative">☰</button>
+                <button id="mobileMenuBtn" class="md:hidden text-xl text-cyan-400 hover:text-cyan-300 transition cursor-pointer z-50 relative inline-flex items-center justify-center" style="min-width:44px; min-height:44px;">☰</button>
             </div>
         </div>
     </nav>
@@ -103,50 +102,34 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10 flex-1 content-center w-full">
             <!-- 左侧文字 -->
             <div class="text-center lg:text-left order-2 lg:order-1">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6">
+                <div class="hero-pill inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6">
                     <span class="text-cyan-400">✨</span>
                     <span class="text-cyan-200 text-sm">TigerZ 家族成员</span>
                     <span class="text-cyan-400">✨</span>
                 </div>
-                
-                <h1 class="street-font text-5xl md:text-7xl lg:text-8xl mb-4 leading-none">
+
+                <h1 class="hero-title--h1 street-font text-5xl md:text-7xl lg:text-8xl mb-4 leading-none">
                     <span class="cyber-gradient-text glow-text">HEY!</span>
                 </h1>
-                <h2 class="title-font text-3xl md:text-5xl mb-6">
-                    我是 <span class="mint-gradient-text">十年</span> 
+                <h2 class="hero-title--h2 title-font text-3xl md:text-5xl mb-6">
+                    我是 <span class="mint-gradient-text">十年</span>
                     <span class="text-2xl md:text-3xl text-cyan-400/60">Decade</span>
                     <span class="inline-block ml-2 text-3xl md:text-4xl float-animation">🐯</span>
                 </h2>
-                
-                <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+
+                <p class="hero-intro text-gray-400 text-lg mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                     一只来自 <span class="text-cyan-400 font-medium">TigerZ</span> 家族的青蓝色大老虎~<br>
                     Java开发工程师，热爱游戏，最近开始了解宝可梦<br>
                     <span class="typing-cursor text-cyan-300">喜欢交朋友，快来找我玩吧！</span>
                 </p>
-                
-                <div class="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
+
+                <div class="hero-cta flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
                     <a href="#gallery" class="street-btn px-8 py-3.5 cyber-gradient rounded-full font-bold text-white hover:opacity-90 transition glow-cyan inline-flex items-center gap-2">
                         <span>🖼️</span> 约稿展示
                     </a>
                     <a href="#about" class="px-8 py-3.5 glass-card rounded-full font-medium hover:bg-cyan-500/20 transition inline-flex items-center gap-2 border border-cyan-500/30">
                         <span>👋</span> 交个朋友
                     </a>
-                </div>
-                
-                <!-- 数据统计 -->
-                <div class="grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0">
-                    <div class="text-center glass-card rounded-2xl py-4">
-                        <div class="street-font text-2xl md:text-3xl cyber-gradient-text">一点点</div>
-                        <div class="text-gray-500 text-xs mt-1">博文</div>
-                    </div>
-                    <div class="text-center glass-card rounded-2xl py-4">
-                        <div class="street-font text-2xl md:text-3xl mint-gradient-text">很多</div>
-                        <div class="text-gray-500 text-xs mt-1">款游戏</div>
-                    </div>
-                    <div class="text-center glass-card rounded-2xl py-4">
-                        <div class="street-font text-2xl md:text-3xl text-cyan-300">一点点</div>
-                        <div class="text-gray-500 text-xs mt-1">小伙伴</div>
-                    </div>
                 </div>
             </div>
             
@@ -165,7 +148,7 @@
                     </div>
                     
                     <!-- 角色标签 -->
-                    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 glass-card-strong px-4 sm:px-6 py-2 rounded-full flex items-center gap-2 whitespace-nowrap">
+                    <div class="hero-badge absolute -bottom-4 left-1/2 -translate-x-1/2 glass-card-strong px-4 sm:px-6 py-2 rounded-full flex items-center gap-2 whitespace-nowrap">
                         <span class="text-lg">🐯</span>
                         <span class="text-sm font-medium text-cyan-200">青蓝虎 · TigerZ</span>
                     </div>
@@ -231,7 +214,7 @@
                             </div>
                             <div class="flex items-center justify-between p-3 rounded-xl bg-cyan-500/5">
                                 <span class="text-gray-500 text-sm">生日</span>
-                                <span class="text-cyan-200 font-medium">MM月dd日</span>
+                                <span class="text-cyan-200 font-medium">九月初五</span>
                             </div>
                             <div class="flex items-center justify-between p-3 rounded-xl bg-cyan-500/5">
                                 <span class="text-gray-500 text-sm">职业</span>
@@ -502,23 +485,7 @@
                     </div>
                 </div>
                 
-                <!-- X / Twitter -->
-                <div class="glass-card rounded-2xl p-6 card-hover cursor-pointer group">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                            𝕏
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg">X (Twitter)</h4>
-                            <p class="text-gray-400 text-sm">社交平台</p>
-                        </div>
-                    </div>
-                    <div class="bg-cyan-500/5 rounded-xl p-3 text-center">
-                        <span class="text-gray-400 text-lg">保密 🐶</span>
-                    </div>
-                </div>
-                
-                
+                                
                 <!-- 游戏开黑 -->
                 <div class="glass-card rounded-2xl p-6 card-hover cursor-pointer group">
                     <div class="flex items-center gap-4 mb-4">
@@ -551,21 +518,6 @@
                     </div>
                 </div>
                 
-                <!-- TigerZ家族 -->
-                <div class="glass-card rounded-2xl p-6 card-hover cursor-pointer group">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                            🐾
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg">TigerZ家族</h4>
-                            <p class="text-gray-400 text-sm">家族官方</p>
-                        </div>
-                    </div>
-                    <div class="bg-cyan-500/5 rounded-xl p-3 text-center">
-                        <span class="text-teal-300 text-sm">欢迎加入家族！</span>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -588,11 +540,11 @@
                         一只热爱游戏和宝可梦的青蓝色大老虎，Java开发工程师一枚。
                         喜欢交朋友，感谢你的来访，愿我们都能保持热爱，奔赴山海 💙
                     </p>
-                    <div class="flex gap-3 mt-4">
-                        <span class="w-8 h-8 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">🐦</span>
-                        <span class="w-8 h-8 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">💬</span>
-                        <span class="w-8 h-8 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">📧</span>
-                        <span class="w-8 h-8 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">🎨</span>
+                    <div class="footer-social flex gap-3 mt-4">
+                        <span class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">🐦</span>
+                        <span class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">💬</span>
+                        <span class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">📧</span>
+                        <span class="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-sm cursor-pointer hover:bg-cyan-500/20 transition">🎨</span>
                     </div>
                 </div>
                 
@@ -630,7 +582,7 @@
     </footer>
 
     <!-- 返回顶部按钮 -->
-    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 cyber-gradient rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center text-white font-bold glow-cyan">
+    <button id="backToTop" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-12 h-12 cyber-gradient rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center text-white font-bold glow-cyan">
         ↑
     </button>
 
